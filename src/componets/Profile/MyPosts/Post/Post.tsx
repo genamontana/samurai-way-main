@@ -1,5 +1,7 @@
 import React from 'react';
 import s from './Post.module.css';
+import {Simulate} from 'react-dom/test-utils';
+import input = Simulate.input;
 
 export const Post = () => {
     return <div className={s.item}>
@@ -8,5 +10,9 @@ export const Post = () => {
         <div>
             <span>like</span>
         </div>
+        <input value='5'/>
+        <input value='6'/>
     </div>
+
+
 }
