@@ -1,17 +1,18 @@
 import React from 'react';
 import s from './Post.module.css';
-import {Simulate} from 'react-dom/test-utils';
-import input = Simulate.input;
 
-export const Post = () => {
+export type PostType = {
+    message: string
+}
+
+
+export const Post = (props:PostType ) => {
     return <div className={s.item}>
         <img src="https://photo.sibnet.ru/upload/imgbig/127141997158.jpg" alt="bin"/>
-        post_1
+        {props.message}
         <div>
             <span>like</span>
         </div>
-        <input value='5'/>
-        <input value='6'/>
     </div>
 
 
