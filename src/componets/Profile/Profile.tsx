@@ -2,15 +2,17 @@ import React from 'react';
 import s from './Profile.module.css';
 import {MyPosts} from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
-import {PostType} from '../../index';
+import {PostType} from '../../redux/state';
 
 type ProfileType = {
     posts: PostType[]
 }
-export const Profile = ({posts}: ProfileType) => {    {/*здесь сделал как научил Артем*/}
+
+export const Profile = (props: ProfileType) => {
+
 
     return <div>
         <ProfileInfo/>
-        <MyPosts posts={posts}/>  {/*здесь сделал как научил Артем*/}
+        <MyPosts posts={props.posts}/>
     </div>
 }
