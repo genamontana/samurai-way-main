@@ -3,30 +3,24 @@ export type PostType = {
     message: string
     likesCount: number
 }
-
 export type DialogsType = {
     id: string
     name: string
 }
-
 export type MessagesType = {
     id: string
     message: string
 }
-
 export type ProfilePageType = {
     posts: PostType[]
 }
-
 export type MessagesPageType = {
     messages: MessagesType[]
     dialogs: DialogsType[]
 }
-
 export type StateType = {
     profilePage: ProfilePageType
-    messagesPage: MessagesPageType
-
+    dialogsPage: MessagesPageType
 }
 
 let state: StateType = {
@@ -38,14 +32,7 @@ let state: StateType = {
             {id: '4', message: 'Yes', likesCount: 11,},
         ],
     },
-    messagesPage: {
-        messages: [
-            {id: '1', message: 'Hi',},
-            {id: '2', message: 'How is your it-incubator?',},
-            {id: '3', message: 'Yo!',},
-            {id: '4', message: 'Yo!',},
-            {id: '5', message: 'Yo!',}
-        ],
+    dialogsPage: {
         dialogs: [
             {id: '1', name: 'Gena',},
             {id: '2', name: 'Andrey',},
@@ -54,7 +41,14 @@ let state: StateType = {
             {id: '5', name: 'Aleksandr',},
             {id: '6', name: 'Valera',},
         ],
-    }
+        messages: [
+            {id: '1', message: 'Hi',},
+            {id: '2', message: 'How is your it-incubator?',},
+            {id: '3', message: 'Yo!',},
+            {id: '4', message: 'Yo!',},
+            {id: '5', message: 'Yo!',}
+        ],
+    },
 }
 
 export default state;
