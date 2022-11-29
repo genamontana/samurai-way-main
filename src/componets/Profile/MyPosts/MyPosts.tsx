@@ -5,6 +5,7 @@ import {PostType} from '../../../redux/state';
 
 type MyPostsType = {
     posts: PostType[]
+    addPost: (postMessage: string) => void
 }
 
 
@@ -25,7 +26,7 @@ export const MyPosts = (props: MyPostsType) => {
             </div>
             <div>
                 <button
-                    onClick={addPost}>Add post
+                    onClick={()=>props.addPost}>Add post
                 </button>
             </div>
         </div>
