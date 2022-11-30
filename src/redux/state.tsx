@@ -15,6 +15,7 @@ export type MessagesType = {
 }
 export type ProfilePageType = {
     posts: PostType[]
+    newPostText:string
 }
 export type MessagesPageType = {
     messages: MessagesType[]
@@ -33,6 +34,7 @@ let state: StateType = {
             {id: '3', message: 'Hello', likesCount: 11,},
             {id: '4', message: 'Yes', likesCount: 11,},
         ],
+        newPostText:'',
     },
     dialogsPage: {
         dialogs: [
@@ -53,7 +55,7 @@ let state: StateType = {
     },
 }
 
-export let addPost = (postMessage: string) => {
+export const addPost = (postMessage: string) => {
     const newPost: PostType = {
         id: '5',
         message: postMessage,

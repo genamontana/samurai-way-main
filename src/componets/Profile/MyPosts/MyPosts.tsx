@@ -6,6 +6,7 @@ import {PostType} from '../../../redux/state';
 type MyPostsType = {
     posts: PostType[]
     addPost: (postMessage: string) => void
+    newPost:string
 }
 
 
@@ -20,16 +21,23 @@ export const MyPosts = (props: MyPostsType) => {
         }
     }
 
+    const onPostChange = ()=> {
+
+    }
+
     return <div className={s.postsBlock}>
         <h3>My posts</h3>
         <div>
             <div>
-                <textarea ref={newPostElement}></textarea>
+                <textarea ref={newPostElement}
+                          value={props.newPost}
+                          onChange={onPostChange}
+                />
             </div>
             <div>
                 <button
-                    onClick={addPost}>Add post
-                </button>
+                    onClick={addPost}
+                >Add post</button>
             </div>
         </div>
         <div className={s.posts}>
