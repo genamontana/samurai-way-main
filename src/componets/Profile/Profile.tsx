@@ -7,7 +7,8 @@ import {PostType} from '../../redux/state';
 type ProfileType = {
     profilePage: PostType[]
     addPost: (postMessage: string) => void
-    newPost:string
+    newPostText:string
+    onPostChange: (newText: string) => void
 }
 
 export const Profile = (props: ProfileType) => {
@@ -18,7 +19,8 @@ export const Profile = (props: ProfileType) => {
         <MyPosts
             posts={props.profilePage}
             addPost={props.addPost}
-            newPost={props.newPost}
+            newPostText={props.newPostText}
+            onPostChange={props.onPostChange}
         />
     </div>
 }

@@ -13,6 +13,7 @@ import {StateType} from './redux/state';
 type appType = {
     state: StateType
     addPost: (postMessage: string) => void
+    onPostChange: (newText: string) => void
 }
 const App = (props: appType) => {
 
@@ -26,11 +27,12 @@ const App = (props: appType) => {
                              messages={props.state.dialogsPage.messages}/>}/>
                 <Route path="/profile"
                        render={() =>
-                    <Profile
-                        profilePage={props.state.profilePage.posts}
-                        addPost={props.addPost}
-                        newPost={props.state.profilePage.newPostText}
-                    />}
+                           <Profile
+                               profilePage={props.state.profilePage.posts}
+                               addPost={props.addPost}
+                               newPostText={props.state.profilePage.newPostText}
+                               onPostChange={props.onPostChange}
+                           />}
                 />
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>
