@@ -9,6 +9,7 @@ import {addPost} from './redux/state'
 import {BrowserRouter} from 'react-router-dom';
 
 const rerenderEntireTree = () => {
+
     ReactDOM.render(
         <BrowserRouter>
             <App state={state}
