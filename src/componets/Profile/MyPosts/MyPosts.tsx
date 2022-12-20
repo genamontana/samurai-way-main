@@ -1,13 +1,13 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import {Post} from './Post/Post';
-import {ActionsType, ProfilePageType} from '../../../redux/state';
+import {ActionsType, addPostActionCreator, ProfilePageType, updateNewPostTextActionCreator} from '../../../redux/state';
+
 
 type MyPostsType = {
     posts: ProfilePageType
-    dispatch: (action: ActionsType ) => void
+    dispatch: (action: ActionsType) => void
 }
-
 
 export const MyPosts = (props: MyPostsType) => {
     let postsElements = props.posts.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
@@ -16,16 +16,16 @@ export const MyPosts = (props: MyPostsType) => {
 
 
     let addPost = () => {
-        props.dispatch({type:'ADD-POST',newPostText:props.posts.newPostText})
+        props.dispatch(addPostActionCreator(props.posts.newPostText))
     }
 
 
     const onPostChange = () => {
-        if (newPostElement.current){
+        if (newPostElement.current) {
             let text = newPostElement.current.value
-            props.dispatch({type:'UPDATE-NEW-POST-TEXT',newText:text}
-        )
-    }}
+            props.dispatch(updateNewPostTextActionCreator(text))
+        }
+    }
 
     return <div className={s.postsBlock}>
         <h3>My posts</h3>
