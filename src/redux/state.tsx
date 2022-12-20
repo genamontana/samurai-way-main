@@ -26,8 +26,6 @@ export type StateType = {
 export type StoreType = {
     _state: StateType
     _callSubscriber: () => void
-    addPost: () => void
-    onPostChange: (newText: string) => void
     subscribe: (observer: () => void) => void
     getState: () => StateType
     dispatch: (action: ActionsType ) => void
@@ -81,22 +79,6 @@ let store: StoreType = {
     },
     subscribe(observer) {
         this._callSubscriber = observer
-    },
-
-    addPost() {
-        const newPost: PostType = {
-            id: '5',
-            message: this._state.profilePage.newPostText,
-            likesCount: 0,
-        }
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber()
-    },
-    onPostChange(newText: string) {
-        this._state.profilePage.newPostText = newText
-
-        this._callSubscriber()
     },
 
     dispatch(action) {

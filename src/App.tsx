@@ -8,12 +8,11 @@ import {News} from './componets/News/News';
 import {Music} from './componets/Music/Music';
 import {Settings} from './componets/Settings/Settings';
 import {Route} from 'react-router-dom';
-import {StateType} from './redux/state';
+import {ActionsType, StateType} from './redux/state';
 
 type appType = {
     state: StateType
-    addPost: (postMessage: string) => void
-    onPostChange: (newText: string) => void
+    dispatch: (action: ActionsType ) => void
 }
 const App = (props: appType) => {
 
@@ -28,10 +27,8 @@ const App = (props: appType) => {
                 <Route path="/profile"
                        render={() =>
                            <Profile
-                               profilePage={props.state.profilePage.posts}
-                               addPost={props.addPost}
-                               newPostText={props.state.profilePage.newPostText}
-                               onPostChange={props.onPostChange}
+                               profilePage={props.state.profilePage}
+                               dispatch={props.dispatch}
                            />}
                 />
                 <Route path="/news" render={() => <News/>}/>
