@@ -18,6 +18,7 @@ export type ProfilePageType = {
 export type MessagesPageType = {
     messages: MessagesType[]
     dialogs: DialogsType[]
+    newMessageBody: string
 }
 export type StateType = {
     profilePage: ProfilePageType
@@ -31,7 +32,7 @@ export type StoreType = {
     dispatch: (action: ActionsType) => void
 }
 
-export type ActionsType = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator>
+export type ActionsType = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator>
 
 let store: StoreType = {
     _state: {
@@ -60,6 +61,7 @@ let store: StoreType = {
                 {id: '4', message: 'Yo!',},
                 {id: '5', message: 'Yo!',}
             ],
+            newMessageBody: '',
         },
     },
     _callSubscriber() {
@@ -86,6 +88,8 @@ let store: StoreType = {
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber()
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
+            this._state.dialogsPage.newMessageBody = action.type
         }
     }
 }
@@ -97,6 +101,10 @@ export const addPostActionCreator = (postText: string) => ({
 export const updateNewPostTextActionCreator = (newText: string) => ({
     type: 'UPDATE-NEW-POST-TEXT',
     newText: newText
+} as const)
+export const updateNewMessageBodyActionCreator = () => ({
+    type: 'UPDATE-NEW-MESSAGE-BODY',
+
 } as const)
 
 
