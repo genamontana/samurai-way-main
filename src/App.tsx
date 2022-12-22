@@ -8,11 +8,12 @@ import {News} from './componets/News/News';
 import {Music} from './componets/Music/Music';
 import {Settings} from './componets/Settings/Settings';
 import {Route} from 'react-router-dom';
-import {ActionsType, StateType} from './redux/state';
+import {ActionsType, StateType, StoreType} from './redux/state';
 
 type appType = {
     state: StateType
-    dispatch: (action: ActionsType ) => void
+    dispatch: (action: ActionsType) => void
+    store: StoreType
 }
 const App = (props: appType) => {
 
@@ -21,9 +22,8 @@ const App = (props: appType) => {
             <Header/>
             <Navbar/>
             <div className="app-wrapper-content">
-                <Route path="/dialogs" render={() =>
-                    <Dialogs dialogs={props.state.dialogsPage.dialogs}
-                             messages={props.state.dialogsPage.messages}/>}/>
+                <Route path="/dialogs"
+                       render={() => <Dialogs store={props.store}/>}/>
                 <Route path="/profile"
                        render={() =>
                            <Profile

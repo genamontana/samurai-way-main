@@ -32,7 +32,11 @@ export type StoreType = {
     dispatch: (action: ActionsType) => void
 }
 
-export type ActionsType = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator>
+export type ActionsType =
+    ReturnType<typeof addPostActionCreator>
+    | ReturnType<typeof updateNewPostTextActionCreator>
+    | ReturnType<typeof updateNewMessageBodyCreator>
+    | ReturnType<typeof SendMessageCreator>
 
 let store: StoreType = {
     _state: {
@@ -89,7 +93,13 @@ let store: StoreType = {
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber()
         } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
-            this._state.dialogsPage.newMessageBody = action.type
+            this._state.dialogsPage.newMessageBody = action.body
+            this._callSubscriber()
+        } else if (action.type === 'SEND-MESSAGE') {
+            let body = this._state.dialogsPage.newMessageBody
+            this._state.dialogsPage.newMessageBody = ''
+            this._state.dialogsPage.messages.push({id: '6', message: body})
+            this._callSubscriber()
         }
     }
 }
@@ -102,9 +112,12 @@ export const updateNewPostTextActionCreator = (newText: string) => ({
     type: 'UPDATE-NEW-POST-TEXT',
     newText: newText
 } as const)
-export const updateNewMessageBodyActionCreator = () => ({
+export const SendMessageCreator = () => ({
+    type: 'SEND-MESSAGE',
+} as const)
+export const updateNewMessageBodyCreator = (body: string) => ({
     type: 'UPDATE-NEW-MESSAGE-BODY',
-
+    body: body,
 } as const)
 
 
