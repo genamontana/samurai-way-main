@@ -13,13 +13,9 @@ type DialogsMessageType = {
 export const Dialogs = (props: DialogsMessageType) => {
 
     let state = props.store.getState().dialogsPage
-
     let dialogsElements = state.dialogs.map(d => <DialogItem id={d.id} name={d.name}/>)
-
     let messagesElements = state.messages.map(m => <Message message={m.message}/>)
-
     let newMessageBody = state.newMessageBody
-
     const onSendMessageClick = () => {
         props.store.dispatch(SendMessageCreator())
     }
