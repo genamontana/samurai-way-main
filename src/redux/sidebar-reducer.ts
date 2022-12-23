@@ -6,5 +6,4 @@ const sidebarReducer = (state: StateType, action: any) => {
 
     return state
 }
-
 export default sidebarReducer;
