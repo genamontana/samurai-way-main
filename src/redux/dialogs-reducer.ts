@@ -1,8 +1,23 @@
-import {ActionsType, MessagesPageType} from './state';
+import {MessagesPageType} from './state';
 
+export type ActionsTypesDialogs = TypeSendMessage | TypeUpdateMassage
 
+export type TypeSendMessage = ReturnType<typeof SendMessageCreator>
+export type TypeUpdateMassage = ReturnType<typeof updateNewMessageBodyCreator>
 
-const dialogsReducer = (state: MessagesPageType, action: ActionsType) => {
+export const SendMessageCreator = () => {
+    return {
+        type: 'SEND-MESSAGE',
+    } as const
+}
+export const updateNewMessageBodyCreator = (body: string) => {
+    return {
+        type: 'UPDATE-NEW-MESSAGE-BODY',
+        body: body,
+    } as const
+}
+
+const dialogsReducer = (state: MessagesPageType, action: ActionsTypesDialogs) => {
     switch (action.type) {
         case 'UPDATE-NEW-MESSAGE-BODY':
             state.newMessageBody = action.body
@@ -15,5 +30,6 @@ const dialogsReducer = (state: MessagesPageType, action: ActionsType) => {
     }
     return state
 }
+
 
 export default dialogsReducer;
